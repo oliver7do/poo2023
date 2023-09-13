@@ -19,9 +19,12 @@ class Utilisateur
         $this->mdp = $password;
     }
 
+  // methode inscription
     public function inscription(){
+        // creer une instance DbConnect
         $dbConnect = new DbConnect();
         $db = $dbConnect->dbConnexion();
+        // $db = $dbConnect->connexionDataBase
         $request = $db->prepare("INSERT INTO 'utilisateurs' ('nom', 'prenom', 'email', 'mdp') VALUES (?,?,?,?)");
         try{
             $request->execute(array($this->nom, $this->prenom, $this->email, $this->mdp));
@@ -29,7 +32,9 @@ class Utilisateur
             echo $e->getMessage();
         }
     }
-    
+
+    // methode connexion 
+    public function connexion($email, $password)
 }
 
 
